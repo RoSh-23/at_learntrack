@@ -5,11 +5,14 @@ import java.util.List;
 
 import com.airtribe.learntrack.entity.Course;
 import com.airtribe.learntrack.entity.Student;
+import com.airtribe.learntrack.enums.EnrollmentStatus;
+import com.airtribe.learntrack.entity.Enrollment;
 import com.airtribe.learntrack.repository.CourseInMemoryRepository;
 import com.airtribe.learntrack.repository.EnrollmentInMemoryRepository;
 import com.airtribe.learntrack.repository.StudentInMemoryRepository;
 import com.airtribe.learntrack.service.CourseService;
 import com.airtribe.learntrack.service.StudentService;
+import com.airtribe.learntrack.service.EnrollmentService;
 import com.airtribe.learntrack.exception.EntityNotFoundException;
 import com.airtribe.learntrack.exception.InvalidEmailException;
 
@@ -110,8 +113,7 @@ public class Main {
                             try {
                                 studentService.deactivateStudent(studentId);
                                 System.out.print("Deactivated!");
-                            }
-                            catch (EntityNotFoundException e) {
+                            } catch (EntityNotFoundException e) {
                                 System.out.println(e.getMessage());
                             } catch (Exception e) {
                                 System.out.println(e.getMessage());
@@ -146,6 +148,7 @@ public class Main {
                             String courseName;
                             Integer durationInWeeks;
                             System.out.print("Enter Course Name: ");
+                            scn.nextLine();
                             courseName = scn.nextLine();
                             System.out.print("Enter Course Duration in Weeks: ");
                             durationInWeeks = scn.nextInt();
@@ -160,9 +163,36 @@ public class Main {
                             break;
                         }
                         case 2: {
+                            System.out.println("*****ALL COURSES*****");
+                            List<Course> courses = courseService.viewAllCourses();
+                            for (Course course : courses) {
+                                System.out.println(course.toString());
+                            }
                             break;
                         }
                         case 3: {
+                            System.out.print("Enter Course Id for activating/deactivating: ");
+                            scn.nextLine();
+                            String courseId = scn.nextLine();
+                            char activationChoice;
+                            do {
+                                System.out.print("Enter T: to activate F: to deactivate: ");
+                                activationChoice = Character.toUpperCase(scn.next().charAt(0));
+
+                                if (activationChoice != 'T' && activationChoice != 'F') {
+                                    System.out.println("Error: Input must be either T or F.");
+                                }
+
+                            } while (activationChoice != 'T' && activationChoice != 'F');
+                            try {
+                                boolean activationChoiceBool = (activationChoice == 'T') ? true : false;
+                                courseService.activateDeactivateCourse(courseId, activationChoiceBool);
+                            }
+                            catch (EntityNotFoundException e) {
+                                System.out.println(e.getMessage());
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
                             break;
                         }
                         case 4: {
@@ -185,14 +215,65 @@ public class Main {
                     System.out.print("Choose a sub-option: ");
 
                     int enrollmentMgmtChoice = scn.nextInt();
+
+                    EnrollmentService enrollmentService = new EnrollmentService(enrollmentRepo);
+
                     switch (enrollmentMgmtChoice) {
                         case 1: {
+                            System.out.print("Enter Course Id for enrollment: ");
+                            scn.nextLine();
+                            String courseId = scn.nextLine();
+                            System.out.print("Enter Student Id for enrollment: ");
+                            String studentId = scn.nextLine();
+                            try {
+                                Enrollment enrollment = new Enrollment(studentId, courseId);
+                                enrollmentService.addEnrollment(enrollment);
+                            } catch (EntityNotFoundException e) {
+                                System.out.println(e.getMessage());
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
                             break;
                         }
                         case 2: {
+                            System.out.print("Enter Student Id for viewing all Enrollments of a student: ");
+                            scn.nextLine();
+                            String studentId = scn.nextLine();
+                            try {
+                                List<Enrollment> enrollments = enrollmentService.viewAllStudentEnrollments(studentId);
+                                for (Enrollment enrollment : enrollments) {
+                                    System.out.println(enrollment.toString());
+                                }
+                            } catch (EntityNotFoundException e) {
+                                System.out.println(e.getMessage());
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
                             break;
                         }
                         case 3: {
+                            System.out.print("Enter Enrollment Id for marking completed/cancelled: ");
+                            scn.nextLine();
+                            String enrollmentId = scn.nextLine();
+                            char enrollmentStatusChoice;
+                            do {
+                                System.out.print("Enter A: to cancel B: to complete: ");
+                                enrollmentStatusChoice = Character.toUpperCase(scn.next().charAt(0));
+
+                                if (enrollmentStatusChoice != 'A' && enrollmentStatusChoice != 'B') {
+                                    System.out.println("Error: Input must be either A or B.");
+                                }
+
+                            } while (enrollmentStatusChoice != 'A' && enrollmentStatusChoice != 'B');
+                            try {
+                                EnrollmentStatus enrollmentStatusChoiceEnum = (enrollmentStatusChoice == 'A') ? EnrollmentStatus.CANCELLED : EnrollmentStatus.COMPLETED;
+                                enrollmentService.setEnrollmentStatus(enrollmentId, enrollmentStatusChoiceEnum);
+                            }
+                            catch (EntityNotFoundException e) {
+                                System.out.println(e.getMessage());
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
                             break;
                         }
                         case 4: {

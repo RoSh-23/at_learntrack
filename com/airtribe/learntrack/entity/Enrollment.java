@@ -22,6 +22,16 @@ public class Enrollment {
         this.status = status;
     }
 
+    public Enrollment(String studentId, String courseId) {
+        this.enrollmentDate = LocalDate.now();
+        InputValidators.isValidEnrollmentDate(enrollmentDate);
+
+        this.id = IdGenerator.getNextEnrollmentId();
+        this.studentId = studentId;
+        this.courseId = courseId;
+        this.status = EnrollmentStatus.ACTIVE;
+    }
+
     public String getId() {
         return id;
     }

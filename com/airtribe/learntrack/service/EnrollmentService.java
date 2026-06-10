@@ -24,7 +24,7 @@ public class EnrollmentService {
         List<Enrollment> resultEnrollments = new ArrayList<>();
 
         for (Enrollment enrollment : allEnrollments) {
-            if (enrollment.getStudentId() == studentId) {
+            if (enrollment.getStudentId().equals(studentId)) {
                 resultEnrollments.add(enrollment);
             }
         }
