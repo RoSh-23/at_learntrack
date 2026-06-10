@@ -227,7 +227,7 @@ public class Main {
                             String studentId = scn.nextLine();
                             try {
                                 Enrollment enrollment = new Enrollment(studentId, courseId);
-                                enrollmentService.addEnrollment(enrollment);
+                                enrollmentService.addEnrollment(enrollment, studentRepo, courseRepo);
                             } catch (EntityNotFoundException e) {
                                 System.out.println(e.getMessage());
                             } catch (Exception e) {
