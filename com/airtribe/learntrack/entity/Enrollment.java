@@ -1,6 +1,8 @@
 package com.airtribe.learntrack.entity;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import com.airtribe.learntrack.enums.EnrollmentStatus;
 import com.airtribe.learntrack.util.InputValidators;
 import com.airtribe.learntrack.util.IdGenerator;
@@ -71,8 +73,10 @@ public class Enrollment {
 
     @Override
     public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedEnrollmentDate = this.getEnrollmentDate().format(formatter);
         return String.format(
-                "| Student ID: %-5s | Course ID: %-5s | Enrollment Date: %-10tF | Status: %-2B |",
-                this.getId(), this.getStudentId(), this.getCourseId(), this.getEnrollmentDate(), this.getStatus());
+                "| Enrollemtn Id: %-5s | Student ID: %-5s | Course ID: %-5s | Enrollment Date: %-5s | Status: %-2s |",
+                this.getId(), this.getStudentId(), this.getCourseId(), formattedEnrollmentDate, this.getStatus());
     }
 }
