@@ -18,13 +18,14 @@ public class EnrollmentService {
         this.enrollmentRepo = enrollmentRepo;
     }
 
-    public void addEnrollment(Enrollment enrollment, StudentInMemoryRepository studRepo, CourseInMemoryRepository courseRepo) {
+    public void addEnrollment(Enrollment enrollment, StudentInMemoryRepository studRepo,
+            CourseInMemoryRepository courseRepo) {
         String courseId = enrollment.getCourseId();
         String studentId = enrollment.getStudentId();
 
         // checking validitiy of course and student Id before adding it in repo
-        List <Student> students = studRepo.listAll();
-        List <Course> courses = courseRepo.listAll();
+        List<Student> students = studRepo.listAll();
+        List<Course> courses = courseRepo.listAll();
 
         boolean isStudentIdValid = false;
         boolean isCourseIdValid = false;
@@ -36,17 +37,16 @@ public class EnrollmentService {
             }
         }
 
-        for ( Course course : courses) {
+        for (Course course : courses) {
             if (courseId.equals(course.getId())) {
                 isCourseIdValid = true;
                 break;
             }
         }
 
-        if(isCourseIdValid && isStudentIdValid) {
+        if (isCourseIdValid && isStudentIdValid) {
             enrollmentRepo.add(enrollment);
-        }
-        else {
+        } else {
             throw new IllegalArgumentException("Provided student or course id is not valid");
         }
     }

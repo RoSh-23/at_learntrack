@@ -15,7 +15,7 @@ public class StudentInMemoryRepository implements Repository<Student, String> {
 
     @Override
     public void update(Student student) {
-        for(int i = 0; i < students.size(); i++){
+        for (int i = 0; i < students.size(); i++) {
             if (students.get(i).getId().equals(student.getId())) {
                 students.set(i, student);
                 return;

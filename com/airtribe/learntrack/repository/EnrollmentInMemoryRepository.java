@@ -6,7 +6,7 @@ import java.util.List;
 import com.airtribe.learntrack.entity.Enrollment;
 import com.airtribe.learntrack.exception.EntityNotFoundException;
 
-public class EnrollmentInMemoryRepository implements Repository<Enrollment, String>{
+public class EnrollmentInMemoryRepository implements Repository<Enrollment, String> {
     private final List<Enrollment> enrollments = new ArrayList<>();
 
     @Override
@@ -16,7 +16,7 @@ public class EnrollmentInMemoryRepository implements Repository<Enrollment, Stri
 
     @Override
     public void update(Enrollment enrollment) {
-        for(int i = 0; i < enrollments.size(); i++){
+        for (int i = 0; i < enrollments.size(); i++) {
             if (enrollments.get(i).getId().equals(enrollment.getId())) {
                 enrollments.set(i, enrollment);
                 return;

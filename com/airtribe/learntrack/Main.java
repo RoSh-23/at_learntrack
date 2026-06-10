@@ -187,8 +187,7 @@ public class Main {
                             try {
                                 boolean activationChoiceBool = (activationChoice == 'T') ? true : false;
                                 courseService.activateDeactivateCourse(courseId, activationChoiceBool);
-                            }
-                            catch (EntityNotFoundException e) {
+                            } catch (EntityNotFoundException e) {
                                 System.out.println(e.getMessage());
                             } catch (Exception e) {
                                 System.out.println(e.getMessage());
@@ -266,10 +265,11 @@ public class Main {
 
                             } while (enrollmentStatusChoice != 'A' && enrollmentStatusChoice != 'B');
                             try {
-                                EnrollmentStatus enrollmentStatusChoiceEnum = (enrollmentStatusChoice == 'A') ? EnrollmentStatus.CANCELLED : EnrollmentStatus.COMPLETED;
+                                EnrollmentStatus enrollmentStatusChoiceEnum = (enrollmentStatusChoice == 'A')
+                                        ? EnrollmentStatus.CANCELLED
+                                        : EnrollmentStatus.COMPLETED;
                                 enrollmentService.setEnrollmentStatus(enrollmentId, enrollmentStatusChoiceEnum);
-                            }
-                            catch (EntityNotFoundException e) {
+                            } catch (EntityNotFoundException e) {
                                 System.out.println(e.getMessage());
                             } catch (Exception e) {
                                 System.out.println(e.getMessage());

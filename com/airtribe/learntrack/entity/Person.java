@@ -14,50 +14,50 @@ public class Person {
         InputValidators.isValidFirstName(firstName);
         InputValidators.isValidLastName(lastName);
         InputValidators.isValidEmail(email);
-        
+
         this.id = IdGenerator.getNextPersonId();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
     }
 
-     // parameterized constructor -- overloading -- without email
+    // parameterized constructor -- overloading -- without email
     public Person(String firstName, String lastName) {
         InputValidators.isValidFirstName(firstName);
         InputValidators.isValidLastName(lastName);
-        
+
         this.id = IdGenerator.getNextPersonId();
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    public String getId(){
+    public String getId() {
         return this.id;
     }
 
-    public String getFirstName(){
+    public String getFirstName() {
         return this.firstName;
     }
 
-    public void setFirstName(String firstName){
+    public void setFirstName(String firstName) {
         InputValidators.isValidFirstName(firstName);
         this.firstName = firstName;
     }
 
-    public String getLastName(){
+    public String getLastName() {
         return this.lastName;
     }
 
-    public void setLastName(String lastName){
+    public void setLastName(String lastName) {
         InputValidators.isValidLastName(lastName);
         this.lastName = lastName;
     }
 
-    public String getEmail(){
+    public String getEmail() {
         return this.email;
     }
 
-    public void setEmail(String email){
+    public void setEmail(String email) {
         InputValidators.isValidEmail(email);
         this.email = email;
     }
