@@ -7,4 +7,4 @@
 ## How to Compile & Run
 * Go to the repo folder and ensure you are inside "src" folder
 * Linux complie: javac -d bin $(find src -name "*.java")
-* Linux Run: Compile: java -cp bin com.airtribe.learntrack.Main
+* Linux Run: java -cp bin com.airtribe.learntrack.Main
