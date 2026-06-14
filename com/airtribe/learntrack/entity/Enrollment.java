@@ -1,0 +1,76 @@
+package com.airtribe.learntrack.entity;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import com.airtribe.learntrack.enums.EnrollmentStatus;
+import com.airtribe.learntrack.util.InputValidators;
+import com.airtribe.learntrack.util.IdGenerator;
+
+public class Enrollment {
+    private final String id;
+    private String studentId;
+    private String courseId;
+    private LocalDate enrollmentDate;
+    private EnrollmentStatus status;
+
+    public Enrollment(String studentId, String courseId, LocalDate enrollmentDate, EnrollmentStatus status) {
+        InputValidators.isValidEnrollmentDate(enrollmentDate);
+
+        this.id = IdGenerator.getNextEnrollmentId();
+        this.studentId = studentId;
+        this.courseId = courseId;
+        this.enrollmentDate = enrollmentDate;
+        this.status = status;
+    }
+
+    public Enrollment(String studentId, String courseId) {
+        this(studentId, courseId, LocalDate.now(), EnrollmentStatus.ACTIVE);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
+
+    public String getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
+    }
+
+    public LocalDate getEnrollmentDate() {
+        return enrollmentDate;
+    }
+
+    public void setEnrollmentDate(LocalDate enrollmentDate) {
+        InputValidators.isValidEnrollmentDate(enrollmentDate);
+        this.enrollmentDate = enrollmentDate;
+    }
+
+    public EnrollmentStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(EnrollmentStatus status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedEnrollmentDate = this.getEnrollmentDate().format(formatter);
+        return String.format(
+                "| Enrollemtn Id: %-5s | Student ID: %-5s | Course ID: %-5s | Enrollment Date: %-5s | Status: %-2s |",
+                this.getId(), this.getStudentId(), this.getCourseId(), formattedEnrollmentDate, this.getStatus());
+    }
+}
