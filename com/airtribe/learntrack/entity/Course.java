@@ -12,6 +12,7 @@ public class Course {
 
     public Course(String courseName, String description, Integer durationInWeeks, boolean active) {
         InputValidators.isValidCourseName(courseName);
+        InputValidators.isValidCourseDescription(description);
         InputValidators.isValidCourseDuration(durationInWeeks);
 
         this.id = IdGenerator.getNextCourseId();
@@ -23,6 +24,7 @@ public class Course {
 
     public Course(String courseName, String description, Integer durationInWeeks) {
         InputValidators.isValidCourseName(courseName);
+        InputValidators.isValidCourseDescription(description);
         InputValidators.isValidCourseDuration(durationInWeeks);
 
         this.id = IdGenerator.getNextCourseId();
