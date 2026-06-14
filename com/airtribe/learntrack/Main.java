@@ -38,7 +38,12 @@ public class Main {
             System.out.println("4. Exit");
             System.out.print("Choose an option: ");
 
-            int mainChoice = scn.nextInt();
+            int mainChoice = 0;
+            try {
+                mainChoice = scn.nextInt();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
 
             switch (mainChoice) {
                 case 1: {
@@ -50,7 +55,13 @@ public class Main {
                     System.out.println("5. Back to Main Menu");
                     System.out.print("Choose a sub-option: ");
 
-                    int studentMgmtChoice = scn.nextInt();
+                    int studentMgmtChoice = 0;
+
+                    try {
+                        studentMgmtChoice = scn.nextInt();
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
 
                     StudentService studentService = new StudentService(studentRepo);
 
@@ -59,7 +70,7 @@ public class Main {
                             String firstName;
                             String lastName;
                             String email;
-                            Integer batch;
+                            Integer batch = 2026;
                             scn.nextLine();
                             System.out.print("Enter Student First Name: ");
                             firstName = scn.nextLine();
@@ -68,7 +79,11 @@ public class Main {
                             System.out.print("Enter Student Email: ");
                             email = scn.nextLine();
                             System.out.print("Enter Student Batch: ");
-                            batch = scn.nextInt();
+                            try {
+                                batch = scn.nextInt();
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
                             try {
                                 Student student = new Student(firstName, lastName, email, batch);
                                 studentService.addStudent(student);
@@ -139,19 +154,30 @@ public class Main {
                     System.out.println("4. Back to Main Menu");
                     System.out.print("Choose a sub-option: ");
 
-                    int courseMgmtChoice = scn.nextInt();
+                    int courseMgmtChoice = 0;
+
+                    try {
+                        courseMgmtChoice = scn.nextInt();
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
 
                     CourseService courseService = new CourseService(courseRepo);
 
                     switch (courseMgmtChoice) {
                         case 1: {
                             String courseName;
-                            Integer durationInWeeks;
+                            Integer durationInWeeks = 8;
                             System.out.print("Enter Course Name: ");
                             scn.nextLine();
                             courseName = scn.nextLine();
                             System.out.print("Enter Course Duration in Weeks: ");
-                            durationInWeeks = scn.nextInt();
+                            try {
+                                durationInWeeks = scn.nextInt();
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
+
                             try {
                                 Course course = new Course(courseName, durationInWeeks);
                                 courseService.addCourse(course);
@@ -213,7 +239,12 @@ public class Main {
                     System.out.println("4. Back to Main Menu");
                     System.out.print("Choose a sub-option: ");
 
-                    int enrollmentMgmtChoice = scn.nextInt();
+                    int enrollmentMgmtChoice = 0;
+                    try {
+                        enrollmentMgmtChoice = scn.nextInt();
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
 
                     EnrollmentService enrollmentService = new EnrollmentService(enrollmentRepo);
 
