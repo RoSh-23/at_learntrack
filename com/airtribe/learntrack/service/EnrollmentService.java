@@ -9,6 +9,7 @@ import com.airtribe.learntrack.repository.EnrollmentInMemoryRepository;
 import com.airtribe.learntrack.repository.StudentInMemoryRepository;
 import com.airtribe.learntrack.repository.CourseInMemoryRepository;
 import com.airtribe.learntrack.enums.EnrollmentStatus;
+import com.airtribe.learntrack.exception.EntityNotFoundException;
 
 public class EnrollmentService {
 
@@ -60,6 +61,10 @@ public class EnrollmentService {
             if (enrollment.getStudentId().equals(studentId)) {
                 resultEnrollments.add(enrollment);
             }
+        }
+
+        if (resultEnrollments.isEmpty()) {
+            throw new EntityNotFoundException("The student corresponding to the passed student Id does not exist");
         }
 
         return resultEnrollments;
