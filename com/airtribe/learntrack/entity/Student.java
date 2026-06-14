@@ -18,12 +18,7 @@ public class Student extends Person {
     }
 
     public Student(String firstName, String lastName, String email, Integer batch) {
-        super(firstName, lastName, email);
-        InputValidators.isValidStudentBatch(batch);
-
-        this.id = IdGenerator.getNextStudentId();
-        this.batch = batch;
-        this.active = true;
+        this(firstName, lastName, email, batch, true);
     }
 
     public String getId() {

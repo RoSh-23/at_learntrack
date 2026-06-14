@@ -23,15 +23,7 @@ public class Course {
     }
 
     public Course(String courseName, String description, Integer durationInWeeks) {
-        InputValidators.isValidCourseName(courseName);
-        InputValidators.isValidCourseDescription(description);
-        InputValidators.isValidCourseDuration(durationInWeeks);
-
-        this.id = IdGenerator.getNextCourseId();
-        this.courseName = courseName;
-        this.description = description;
-        this.durationInWeeks = durationInWeeks;
-        this.active = true;
+        this(courseName, description, durationInWeeks, true);
     }
 
     public String getId() {
