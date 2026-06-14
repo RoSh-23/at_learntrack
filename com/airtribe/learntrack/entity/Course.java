@@ -6,25 +6,28 @@ import com.airtribe.learntrack.util.InputValidators;
 public class Course {
     private final String id;
     private String courseName;
+    private String description;
     private Integer durationInWeeks;
     private boolean active;
 
-    public Course(String courseName, Integer durationInWeeks, boolean active) {
+    public Course(String courseName, String description, Integer durationInWeeks, boolean active) {
         InputValidators.isValidCourseName(courseName);
         InputValidators.isValidCourseDuration(durationInWeeks);
 
         this.id = IdGenerator.getNextCourseId();
         this.courseName = courseName;
+        this.description = description;
         this.durationInWeeks = durationInWeeks;
         this.active = active;
     }
 
-    public Course(String courseName, Integer durationInWeeks) {
+    public Course(String courseName, String description, Integer durationInWeeks) {
         InputValidators.isValidCourseName(courseName);
         InputValidators.isValidCourseDuration(durationInWeeks);
 
         this.id = IdGenerator.getNextCourseId();
         this.courseName = courseName;
+        this.description = description;
         this.durationInWeeks = durationInWeeks;
         this.active = true;
     }

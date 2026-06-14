@@ -12,6 +12,8 @@ public class InputValidators {
     private static final Pattern VALID_FIRST_NAME_PATTERN = Pattern.compile("^(?=.{1,40}$)\\p{L}+(?:[ '-]\\p{L}+)*$");
     private static final Pattern VALID_LAST_NAME_PATTERN = Pattern.compile("^(?=.{1,60}$)\\p{L}+(?:[ '-]\\p{L}+)*$");
     private static final Pattern VALID_COURSE_NAME_PATTERN = Pattern.compile("^(?=.{1,100}$)[A-Za-z0-9 ]+$");
+    private static final Pattern VALID_COURSE_DESCRIPTION_PATTERN = Pattern.compile("^(?=.{1,500}$)[A-Za-z0-9 ]+$");
+
 
     private static final Integer MAX_ALLOWED_COURSE_DURATION_IN_WEEKS = 14;
     private static final Integer MIN_ALLOWED_COURSE_DURATION_IN_WEEKS = 2;
@@ -84,6 +86,20 @@ public class InputValidators {
         }
         if (!isValid) {
             throw new IllegalArgumentException("This is not a valid course name: " + inputCourseName + ".");
+        }
+        return isValid;
+    }
+
+    public static boolean isValidCourseDescription(String inputDescription) {
+        boolean isValid = true;
+        if (inputDescription == null || inputDescription.trim().isEmpty()) {
+            isValid = false;
+        } else {
+            Matcher matcher = VALID_COURSE_DESCRIPTION_PATTERN.matcher(inputDescription);
+            isValid = matcher.matches();
+        }
+        if (!isValid) {
+            throw new IllegalArgumentException("This is not a valid course description: " + inputDescription + ".");
         }
         return isValid;
     }

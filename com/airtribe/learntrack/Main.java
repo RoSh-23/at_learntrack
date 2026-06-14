@@ -166,10 +166,13 @@ public class Main {
                     switch (courseMgmtChoice) {
                         case 1: {
                             String courseName;
+                            String courseDescription;
                             Integer durationInWeeks = 8;
                             System.out.print("Enter Course Name: ");
                             scn.nextLine();
                             courseName = scn.nextLine();
+                            System.out.print("Enter Course Description: ");
+                            courseDescription = scn.nextLine();
                             System.out.print("Enter Course Duration in Weeks: ");
                             try {
                                 durationInWeeks = scn.nextInt();
@@ -178,7 +181,7 @@ public class Main {
                             }
 
                             try {
-                                Course course = new Course(courseName, durationInWeeks);
+                                Course course = new Course(courseName, courseDescription, durationInWeeks);
                                 courseService.addCourse(course);
                             } catch (Exception e) {
                                 System.out.println(e.getMessage());
