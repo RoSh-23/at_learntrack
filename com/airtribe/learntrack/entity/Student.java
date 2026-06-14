@@ -39,7 +39,7 @@ public class Student extends Person {
         this.batch = batch;
     }
 
-    public boolean getActive() {
+    public boolean isActive() {
         return active;
     }
 
@@ -52,6 +52,6 @@ public class Student extends Person {
         return String.format(
                 "| ID: %-5s | First Name: %-10s | Last Name: %-10s | Email: %-10s | Batch: %-3d | Status: %-2B |",
                 this.getId(), this.getFirstName(), this.getLastName(), this.getEmail(), this.getBatch(),
-                this.getActive());
+                this.isActive());
     }
 }

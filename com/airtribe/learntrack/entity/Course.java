@@ -65,7 +65,7 @@ public class Course {
         this.durationInWeeks = durationInWeeks;
     }
 
-    public boolean getActive() {
+    public boolean isActive() {
         return active;
     }
 
@@ -77,6 +77,6 @@ public class Course {
     public String toString() {
         return String.format(
                 "| ID: %-5s | Course Name: %-10s | Course Description: %-10s | Duration in Weeks: %-10d | Status: %-2B |",
-                this.getId(), this.getCourseName(), this.getDescription(), this.getDurationInWeeks(), this.getActive());
+                this.getId(), this.getCourseName(), this.getDescription(), this.getDurationInWeeks(), this.isActive());
     }
 }
