@@ -47,6 +47,15 @@ public class Course {
         this.courseName = courseName;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        InputValidators.isValidCourseDescription(description);
+        this.description = description;
+    }
+
     public Integer getDurationInWeeks() {
         return durationInWeeks;
     }
@@ -67,7 +76,7 @@ public class Course {
     @Override
     public String toString() {
         return String.format(
-                "| ID: %-5s | Course Name: %-10s | Duration in Weeks: %-10d  | Status: %-2B |",
-                this.getId(), this.getCourseName(), this.getDurationInWeeks(), this.getActive());
+                "| ID: %-5s | Course Name: %-10s | Course Description: %-10s | Duration in Weeks: %-10d | Status: %-2B |",
+                this.getId(), this.getCourseName(), this.getDescription(), this.getDurationInWeeks(), this.getActive());
     }
 }
