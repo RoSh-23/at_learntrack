@@ -181,8 +181,6 @@ public class Main {
                             try {
                                 Course course = new Course(courseName, durationInWeeks);
                                 courseService.addCourse(course);
-                            } catch (EntityNotFoundException e) {
-                                System.out.println(e.getMessage());
                             } catch (Exception e) {
                                 System.out.println(e.getMessage());
                             }
