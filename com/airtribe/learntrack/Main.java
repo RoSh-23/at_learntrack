@@ -24,6 +24,9 @@ public class Main {
         StudentInMemoryRepository studentRepo = new StudentInMemoryRepository();
         CourseInMemoryRepository courseRepo = new CourseInMemoryRepository();
         EnrollmentInMemoryRepository enrollmentRepo = new EnrollmentInMemoryRepository();
+        StudentService studentService = new StudentService(studentRepo);
+        CourseService courseService = new CourseService(courseRepo);
+        EnrollmentService enrollmentService = new EnrollmentService(enrollmentRepo);
 
         while (showMenu) {
             System.out.println(
@@ -62,8 +65,6 @@ public class Main {
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
-
-                    StudentService studentService = new StudentService(studentRepo);
 
                     switch (studentMgmtChoice) {
                         case 1: {
@@ -162,8 +163,6 @@ public class Main {
                         System.out.println(e.getMessage());
                     }
 
-                    CourseService courseService = new CourseService(courseRepo);
-
                     switch (courseMgmtChoice) {
                         case 1: {
                             String courseName;
@@ -243,8 +242,6 @@ public class Main {
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
-
-                    EnrollmentService enrollmentService = new EnrollmentService(enrollmentRepo);
 
                     switch (enrollmentMgmtChoice) {
                         case 1: {
